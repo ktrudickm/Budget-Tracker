@@ -9,10 +9,11 @@ const indexDB =
 
 const req = indexDB.open('budget', 1);
 let db;
+
 req.onupgradeneeded = ({target}) => {
      db = target.result;
 
-     db.createObjectStore('pending')
+     db.createObjectStore('pending');
 };
 
 req.onsuccess = ({target}) => {
@@ -41,3 +42,5 @@ function checkDatabase(){
 
 
 }
+
+window.addEventListener("online", checkDatabase);
