@@ -2,7 +2,7 @@ const FILES_TO_CACHE = [
     '/',
     '/index.html',
     '/index.js',
-    '/style.css',
+    '/styles.css',
     '/database.js',
   ];
 
@@ -49,12 +49,12 @@ const FILES_TO_CACHE = [
             return fetch(event.request)
               .then((response) => {
                 if (response.status === 200) {
-                  cache.put(evt.request, response.clone());
+                  cache.put(event.request, response.clone());
                 }
                 return response;
               })
               .catch(() => {
-                return cache.match(evt.request);
+                return cache.match(event.request);
               });
           })
           .catch((err) => console.log(err))

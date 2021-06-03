@@ -1,4 +1,3 @@
-alert('hello')
 const indexDB = 
     window.indexedDB || 
     window.mozIndexedDB ||
@@ -12,7 +11,7 @@ let db;
 
 req.onupgradeneeded = ({target}) => {
      db = target.result;
-     db.createObjectStore('pending');
+     db.createObjectStore('pending', { autoIncrement: true });
 };
 
 req.onsuccess = ({target}) => {
@@ -23,16 +22,15 @@ req.onsuccess = ({target}) => {
 }
 
 function saveRecord(transaction) {
-    const transact = db.transaction('pending', 'readwrite');
+    const transact = db.transaction(['pending'], 'readwrite');
     const store = transact.objectStore('pending');
     store.add(transaction);
 }
 
 function checkDatabase(){
-    const transact = db.transaction(["pending"]);
+    const transact = db.transaction(["pending"], "readwrite");
     const store = transact.objectStore('pending');
-    const getAll =store.getAll();
-
+    const getAll = store.getAll();
 
     getAll.onsuccess = function(){
         if (getAll.result.length > 0){
@@ -46,7 +44,7 @@ function checkDatabase(){
           })
           .then((resp) => resp.json())
           .then(() => {
-              const transact = db.transaction("pending", "readwrite");
+              const transact = db.transaction(["pending"], "readwrite");
               const store = transact.objectStore("pending");
               store.clear();
           })

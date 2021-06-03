@@ -12,11 +12,16 @@ router.post("/api/transaction", ({body}, res) => {
 });
 
 router.post("/api/transaction/bulk", ({body}, res) => {
+  for (const transaction of body) {
+    transaction._id = undefined;
+  }
+
   Transaction.insertMany(body)
     .then(dbTransaction => {
       res.json(dbTransaction);
     })
     .catch(err => {
+      console.error(err);
       res.status(404).json(err);
     });
 });
