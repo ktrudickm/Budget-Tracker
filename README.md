@@ -46,4 +46,4 @@ Ultimately the end result is a budget tracker that also works offline and allows
 
 GitHub Repository - [Budget Tracker App Repository](https://github.com/ktrudickm/Budget-Tracker "Budget Tracker")
 
-Heroku - [Heroku Budget Tracker](https://fitness-workouttracker.herokuapp.com/?id=60a6dad535b9010015ee67bc)
+Heroku - [Heroku Budget Tracker](https://agile-harbor-35191.herokuapp.com/)
